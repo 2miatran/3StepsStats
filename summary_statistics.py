@@ -48,7 +48,7 @@ def table_style(themecolor = 'standard'):
                                ('border', '0.02px solid silver')]} \
     ]
 
-def summarize_statistics_for_cont_data(df, col = None, cont=None, themecolor = 'standard', nonstyle = False, caption_prefix ='Data Summary'):
+def statistics_for_cont_data(df, col = None, cont=None, themecolor = 'standard', nonstyle = False, caption_prefix ='Data Summary'):
     '''
     Create table of summarized statistics for data (df) by feature (col)
     If col are not specified (by default), this function apply to the entire dataframe. 
@@ -169,4 +169,16 @@ def statistics_for_cat_data(df, col = None, cats=None, themecolor = 'standard', 
     newdf = newdf.style.set_table_styles(table_style(themecolor)).set_caption(caption_prefix +' by ' +col)
     
     return newdf
+
+'''
+Example to use
+### Load data first
+df = ... 
+### finding suggest categorical and continuous columns to pass to the summaize statistics function
+cat_list, cont_list = suggesting_column_types(df, cutoff= 50)
+print('Suggested %s columns for categorical data: \n%s' %(len(cat_list), cat_list))
+print('Suggested %s columns for continuous data: \n%s' %(len(cont_list), cont_list))
+### Summarize statistics
 statistics_for_cat_data(df, cats = cat_list, themecolor = 'blue')
+statistics_for_cont_data(df, col='label', nonstyle=False, cont = cont_list, themecolor='blue', caption_prefix='Data Summary')
+'''
