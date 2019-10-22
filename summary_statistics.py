@@ -23,10 +23,10 @@ def createtable(df, mean = True, min_max = True, median = True):
     table = pd.DataFrame()
     if mean:
         table['Mean (std)'] = roundtostring(t, 'mean') + ' (' + roundtostring(t,'std') + ')'
-    if min_max:
+    if median:
         table['Median (IQR)'] = roundtostring(t, '50%') \
                                 + ' (' + roundtostring(t,'25%') +', '+ roundtostring(t,'75%') +')'
-    if median:
+    if min_max:
         table['Min-Max'] = ' (' + roundtostring(t,'min') +', '+ roundtostring(t,'max') +')'
 
     return table#t[['Mean (std)', 'Median (IQR)','Min-Max']]                           
